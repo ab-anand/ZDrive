@@ -13,21 +13,25 @@ from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 from googleapiclient.http import MediaIoBaseDownload, MediaFileUpload
-from zdrive.base import DriveAPI
+from zdrive import DriveAPI
 
 
-class Downloader:
+class Downloader(DriveAPI):
     def __init__(self):
-        self.DEFAULT_STORAGE_PATH = pathlib.Path(os.path.join(os.cwd(), 'drive_content'))
+        super().__init__()
+        self.DEFAULT_STORAGE_PATH = 'drive_content'
 
     def __create_Directory(self, path=None):
         if path is None:
             path = self.DEFAULT_STORAGE_PATH
-            if not os.path.isdir(path):
-                os.mkdir(path=path)
+        if not os.path.isdir(path):
+            os.mkdir(path=path)
+
+        return path
 
     def downloadFolder(self, folderId, destinationFolder=None):
 
+        path = self.__create_Directory(destinationFolder)
         page_token = None
 
         while True:
@@ -44,7 +48,7 @@ class Downloader:
                 itemName = item['name']
                 itemId = item['id']
                 itemType = item['mimeType']
-                filePath = os.path.join(destinationFolder, itemName)
+                filePath = os.path.join(path, itemName)
 
                 if itemType == 'application/vnd.google-apps.folder':
                     print("Stepping into folder: {0}".format(filePath))
@@ -69,8 +73,8 @@ class Downloader:
             while done is False:
                 status, done = downloader.next_chunk(num_retries=2)
                 if status:
-                    if int(status.progress() % 10):
-                        print("Download %d%%." % int(status.progress() * 100))
+                    if int(status.progress()*100) % 10 == 0:
+                        print(" \t Download %d%%." % int(status.progress() * 100))
             print("Download Complete!")
         except Exception as e:
             raise Exception(e)

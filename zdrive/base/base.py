@@ -4,7 +4,6 @@ import pickle
 import os.path
 import io
 import shutil
-import requests
 from mimetypes import MimeTypes
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
