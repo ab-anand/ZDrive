@@ -25,4 +25,5 @@ d.downloadFolder(folder_id)
 # OR specify the output path for the downloaded data. In case, the output_path
 # specified doesn't already exist, zdrive will create a folder there
 output_path = "/Users/abhinavanand/Downloads/data"
-d.downloadFolder(folder_id, destinationFolder=output_path)
+res = d.downloadFolder(folder_id, destinationFolder=output_path)
+print(res)
