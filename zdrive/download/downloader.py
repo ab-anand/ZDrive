@@ -1,24 +1,16 @@
 # import the required libraries
 from __future__ import print_function
 
-import pathlib
-import pickle
 import os.path
 import io
-import shutil
-import requests
 
-from mimetypes import MimeTypes
-from googleapiclient.discovery import build
-from google_auth_oauthlib.flow import InstalledAppFlow
-from google.auth.transport.requests import Request
-from googleapiclient.http import MediaIoBaseDownload, MediaFileUpload
+from googleapiclient.http import MediaIoBaseDownload
 from zdrive import DriveAPI
 
 
 class Downloader(DriveAPI):
     def __init__(self):
-        super().__init__()
+        super(Downloader, self).__init__()
         self.DEFAULT_STORAGE_PATH = 'drive_content'
 
     def __create_Directory(self, path=None):
@@ -62,7 +54,7 @@ class Downloader(DriveAPI):
 
     def downloadFile(self, fileId, filePath=None):
         # Note: The parent folders in filePath must exist
-        print("-> Downloading file with id: {0} name: {1}".format(fileId, filePath))
+        print("\t -> Downloading file with id: {0} name: {1}".format(fileId, filePath))
         request = self.service.files().get_media(fileId=fileId)
         fh = io.FileIO(filePath, mode='wb')
 
