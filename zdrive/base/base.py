@@ -1,14 +1,13 @@
-# import the required libraries
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from __future__ import print_function
 import pickle
 import os.path
-import io
-import shutil
-from mimetypes import MimeTypes
+
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
-from googleapiclient.http import MediaIoBaseDownload, MediaFileUpload
 
 
 class DriveAPI:
