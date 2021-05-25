@@ -3,7 +3,7 @@ ZDrive
 
 
 
-*A lightweight and easy to use library to upload and download contents from Google Drive.!*
+*A lightweight and easy to use library to upload and download contents from Google Drive.*
 
 :Author: Abhinav Anand
 
@@ -22,7 +22,7 @@ contents to and from Drive is important!*
 
 There is a number of such libraries already present with `Pydrive <https://github.com/googleworkspace/PyDrive>`__ being
 the most amazing. Pydrive has a lot of functionalities but there are certain major things that it lacks. The goal of this library is
-to address the most used actions performed i.e. uploading/downloading in a way that is easy-to-use and yet covers the users' requirements.
+to address the mostly used actions performed i.e. uploading/downloading in a way that is easy-to-use and yet covers the users' requirements.
 
 
 Features
@@ -122,11 +122,11 @@ Uploader
 
     >>> from zdrive import Uploader
     >>> input_directory = "/home/abhinav/Downloads"
-    >>> depth = 3
     >>> u = Uploader()
     >>> parent_folder_id = u.createFolder(name="Data")
     >>> result = u.uploadFolder(input_directory, max_depth=3, parentId=parent_folder_id)
     >>> print(result)
+
     '{
         "files":
             {
@@ -146,7 +146,7 @@ Uploader
             }
     }'
 
-- If no ``parentId`` is specified, then ``Uploader()`` would upload the contents from local PC at the ROOT level.
+- If no ``parentId`` is specified, then ``Uploader()`` would upload the contents from local PC to the ROOT level in Drive.
 
 
 Contributing
