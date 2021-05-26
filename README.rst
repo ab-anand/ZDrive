@@ -3,7 +3,7 @@ ZDrive
 
 
 
-*A lightweight and easy to use library to upload and download contents from Google Drive.*
+*A lightweight and easy to use Python library to upload and download contents from Google Drive.*
 
 :Author: Abhinav Anand
 
@@ -16,7 +16,7 @@ What is it
 ---------------
 `[back to top] <https://github.com/ab-anand/ZDrive#zdrive>`__
 
-*Google Drive is possibly the most used online storage platform. A need for some minimal yet effective tool to transfer
+*Google Drive is the most used cloud storage platform. A need for some minimal yet effective tool to transfer
 contents to and from Drive is important!*
 
 
@@ -31,7 +31,8 @@ Features
 
 - Upload folders anywhere in the Drive maintaining the same directory structure as present locally.
 - Download folders from anywhere in the Drive to anywhere in the PC maintaining the same directory structure as present in the Drive.
-- Download or Upload whole directory in less than 5 lines of code
+- Download or Upload whole directory in less than 5 lines of code.
+- Can sustain minor internet interruptions.
 - Minimum dependencies
 - Easy to use
 - Fast!
@@ -78,7 +79,7 @@ Usage
 
 Initial Setup
 ~~~~~~~~~~~~~~
-- Follow the `(Getting Your API Key) <https://medium.com/analytics-vidhya/how-to-connect-google-drive-to-python-using-pydrive-9681b2a14f20>`__ section of this article.
+- Follow the `article <https://medium.com/swlh/google-drive-api-with-python-part-i-set-up-credentials-1f729cb0372b>`__ to get your drive-api credentials.
 - Once you have the ``clients-secret.json``, rename it to ``credentials.json`` and place it in the same folder where you'll be running the script.
 
 Downloader
