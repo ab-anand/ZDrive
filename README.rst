@@ -1,7 +1,7 @@
 ZDrive
 =======
 
-
+|upload|
 
 *A lightweight and easy to use Python library to upload and download contents from Google Drive.*
 
@@ -174,3 +174,7 @@ License
 Built with ♥ by `Abhinav Anand <https://github.com/ab-anand/>`__ under the `MIT License <https://github.com/ab-anand/ZDrive/blob/master/LICENSE/>`__ ©
 
 You can find a copy of the License at `http://abhinav.mit-license.org/ <http://abhinav.mit-license.org/>`__
+
+
+.. |upload| image:: https://github.com/ab-anand/ZDrive/actions/workflows/python-publish.yml/badge.svg
+    :target: https://github.com/ab-anand/ZDrive/actions/workflows/python-publish.yml
