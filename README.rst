@@ -155,7 +155,7 @@ Contributing
 ------------
 `[back to top] <https://github.com/ab-anand/ZDrive#zdrive>`__
 
-To be available soon :)
+Please refer `Contributing page for details <https://github.com/ab-anand/Zdrive/blob/master/CONTRIBUTING.rst>`__
 
 
 Bugs
