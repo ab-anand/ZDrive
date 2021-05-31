@@ -1,7 +1,7 @@
 ZDrive
 =======
 
-|upload|
+|license| |pypi| |python|
 
 *A lightweight and easy to use Python library to upload and download contents from Google Drive.*
 
@@ -22,19 +22,20 @@ contents to and from Drive is important!*
 
 There is a number of such libraries already present with `Pydrive <https://github.com/googleworkspace/PyDrive>`__ being
 the most amazing. Pydrive has a lot of functionalities but there are certain major things that it lacks. The goal of this library is
-to address the mostly used actions performed i.e. uploading/downloading in a way that is easy-to-use and yet covers the users' requirements.
+to address the bulk uploading/downloading functionality in a way that is easy-to-use and yet covers the users' requirements.
 
 
 Features
 --------
 `[back to top] <https://github.com/ab-anand/ZDrive#zdrive>`__
 
-- Upload folders anywhere in the Drive maintaining the same directory structure as present locally.
-- Download folders from anywhere in the Drive to anywhere in the PC maintaining the same directory structure as present in the Drive.
+- Upload folders anywhere in the Drive maintaining the **same directory** structure as present locally.
+- Download folders from anywhere in the Drive to anywhere in the PC maintaining the **same directory structure** as present in the Drive.
 - Download or Upload whole directory in less than 5 lines of code.
-- Can sustain minor internet interruptions.
-- Minimum dependencies
-- Easy to use
+- Can sustain minor network interruptions.
+- Bulk upload/download made easy.
+- Minimal dependencies.
+- Easy to use.
 - Fast!
 - Returns ``JSON`` objects
 - Support
@@ -178,3 +179,10 @@ You can find a copy of the License at `http://abhinav.mit-license.org/ <http://a
 
 .. |upload| image:: https://github.com/ab-anand/ZDrive/actions/workflows/python-publish.yml/badge.svg
     :target: https://github.com/ab-anand/ZDrive/actions/workflows/python-publish.yml
+.. |license| image:: https://img.shields.io/github/license/ab-anand/ZDrive?color=orange
+    :alt: GitHub license
+    :target: https://github.com/ab-anand/ZDrive/blob/master/LICENSE
+.. |pypi| image:: https://img.shields.io/pypi/v/zdrive?color=green
+    :alt: PyPI
+.. |python| image:: https://img.shields.io/pypi/pyversions/zdrive?color=red
+    :alt: PyPI - Python Version

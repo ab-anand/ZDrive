@@ -17,7 +17,7 @@ class Uploader(DriveAPI):
         self.__default_depth = 5
 
     @staticmethod
-    def isValidDir(path):
+    def __isValidDir(path):
         """
         checks whether the given path
         exists in the directory or not
@@ -116,7 +116,7 @@ class Uploader(DriveAPI):
 
     def uploadFolder(self, folderPath, max_depth=None, parentId=None):
         try:
-            if not self.isValidDir(folderPath):
+            if not self.__isValidDir(folderPath):
                 raise Exception("Not a valid folder path {0}".format(folderPath))
 
             if max_depth is None:
