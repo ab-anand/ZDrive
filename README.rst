@@ -93,6 +93,7 @@ Downloader
 - Semantic file systems allow you to have multiple files with the same name and to have one file appearing in multiple places.
 - Thus for performing any action related to a file/folder in Drive, we would need the IDs of the file/folder.
 - ``ZDrive`` allows you to retrieve a list of files/folders present inside the Drive along with their IDs.
+- ``Downloader()`` also uses multiprocessing for speeding up the download process.
 - Using the ``Downloader()``
 
 .. code:: python
