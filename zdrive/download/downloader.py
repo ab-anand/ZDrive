@@ -8,6 +8,7 @@ import io
 
 from googleapiclient.http import MediaIoBaseDownload
 from zdrive import DriveAPI
+from multiprocessing import Process
 
 
 class Downloader(DriveAPI):
@@ -37,7 +38,7 @@ class Downloader(DriveAPI):
             ).execute()
 
             items = results.get('files', [])
-
+            download_processes = []
             for item in items:
                 itemName = item['name']
                 itemId = item['id']
@@ -48,7 +49,12 @@ class Downloader(DriveAPI):
                     print("Stepping into folder: {0}".format(filePath))
                     self.downloadFolder(itemId, filePath)  # Recursive call
                 else:
-                    self.downloadFile(itemId, filePath)
+                    p = Process(target=self.downloadFile, args=(itemId, filePath))
+                    p.start()
+                    download_processes.append(p)
+
+                for process in download_processes:
+                    process.join()
 
             page_token = results.get('nextPageToken', None)
             if page_token is None:
@@ -63,14 +69,19 @@ class Downloader(DriveAPI):
         try:
             downloader = MediaIoBaseDownload(fh, request, chunksize=1024 * 1024)
 
+            current_progress = -1
             done = False
             while done is False:
                 status, done = downloader.next_chunk(num_retries=2)
                 if status:
-                    if int(status.progress()*100) % 10 == 0:
-                        print(" \t Download %d%%." % int(status.progress() * 100))
+                    progress = int(status.progress() * 100)
+                    if progress % 10 == 0 and progress != current_progress:
+                        print(
+                            " \t Downloading fileId: {0}, {1}% complete!".format(fileId, int(status.progress() * 100)))
+                        current_progress = progress
             print("Download Complete!")
         except Exception as e:
-            raise Exception(e)
+            print(str(e))
+            return
         finally:
             fh.close()
