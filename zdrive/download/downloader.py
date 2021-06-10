@@ -49,12 +49,12 @@ class Downloader(DriveAPI):
                     print("Stepping into folder: {0}".format(filePath))
                     self.downloadFolder(itemId, filePath)  # Recursive call
                 else:
-                    p = Process(target=self.downloadFile, args=(itemId, filePath))
+                    p = Process(target=self.downloadFile, args=[itemId, filePath])
                     p.start()
                     download_processes.append(p)
 
-                for process in download_processes:
-                    process.join()
+            for process in download_processes:
+                process.join()
 
             page_token = results.get('nextPageToken', None)
             if page_token is None:
