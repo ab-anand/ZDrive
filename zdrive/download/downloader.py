@@ -9,6 +9,8 @@ import io
 from googleapiclient.http import MediaIoBaseDownload
 from zdrive import DriveAPI
 from multiprocessing import Process
+from signal import signal, SIGPIPE, SIG_DFL
+signal(SIGPIPE, SIG_DFL)
 
 
 class Downloader(DriveAPI):
@@ -24,10 +26,11 @@ class Downloader(DriveAPI):
 
         return path
 
-    def downloadFolder(self, folderId, destinationFolder=None):
-
+    def getAllFiles(self, folderId, destinationFolder=None):
         path = self.__create_Directory(destinationFolder)
         page_token = None
+
+        all_files = []
 
         while True:
             results = self.service.files().list(
@@ -47,18 +50,29 @@ class Downloader(DriveAPI):
 
                 if itemType == 'application/vnd.google-apps.folder':
                     print("Stepping into folder: {0}".format(filePath))
-                    self.downloadFolder(itemId, filePath)  # Recursive call
+                    all_files.extend(self.getAllFiles(itemId, filePath)) # Recursive call
                 else:
-                    p = Process(target=self.downloadFile, args=[itemId, filePath])
-                    p.start()
-                    download_processes.append(p)
-
-            for process in download_processes:
-                process.join()
+                    all_files.append(
+                        {"item_id": itemId, "file_path": filePath})
 
             page_token = results.get('nextPageToken', None)
             if page_token is None:
                 break
+        
+        return all_files
+
+    def downloadFolder(self, folderId, destinationFolder=None):
+        all_files = self.getAllFiles(folderId, destinationFolder)
+        
+        download_processes = []
+        for f in all_files:
+            p = Process(target=self.downloadFile,
+                                args=[f['item_id'], f['file_path']])
+            p.start()
+            download_processes.append(p)
+
+        for process in download_processes:
+                process.join()
 
     def downloadFile(self, fileId, filePath=None):
         # Note: The parent folders in filePath must exist
