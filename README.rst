@@ -1,7 +1,7 @@
 ZDrive
 =======
 
-|license| |pypi| |python|
+|license| |pypi| |python| |downloads|
 
 *A lightweight and easy to use Python library to upload and download contents from Google Drive.*
 
@@ -187,3 +187,5 @@ You can find a copy of the License at `http://abhinav.mit-license.org/ <http://a
     :alt: PyPI
 .. |python| image:: https://img.shields.io/pypi/pyversions/zdrive?color=red
     :alt: PyPI - Python Version
+.. |downloads| image:: https://img.shields.io/pypi/dm/zdrive?style=social
+    :alt: Monthly downloads
