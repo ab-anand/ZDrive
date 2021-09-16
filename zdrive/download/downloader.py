@@ -82,7 +82,6 @@ class Downloader(DriveAPI):
 
         try:
             downloader = MediaIoBaseDownload(fh, request, chunksize=1024 * 1024)
-
             current_progress = -1
             done = False
             while done is False:
