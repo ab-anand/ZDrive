@@ -187,5 +187,6 @@ You can find a copy of the License at `http://abhinav.mit-license.org/ <http://a
     :alt: PyPI
 .. |python| image:: https://img.shields.io/pypi/pyversions/zdrive?color=red
     :alt: PyPI - Python Version
-.. |downloads| image:: https://img.shields.io/pypi/dm/zdrive?style=social
+.. |downloads| image:: https://static.pepy.tech/personalized-badge/zdrive?period=total&units=international_system&left_color=blue&right_color=yellow&left_text=Downloads
+    :target: https://pepy.tech/project/zdrive
     :alt: Monthly downloads
