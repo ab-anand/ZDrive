@@ -9,8 +9,12 @@ import io
 from googleapiclient.http import MediaIoBaseDownload
 from zdrive import DriveAPI
 from multiprocessing import Process
-from signal import signal, SIGPIPE, SIG_DFL
-signal(SIGPIPE, SIG_DFL)
+
+try:
+    from signal import signal, SIGPIPE, SIG_DFL
+    signal(SIGPIPE, SIG_DFL)
+except ImportError:
+    pass
 
 
 class Downloader(DriveAPI):
@@ -41,7 +45,6 @@ class Downloader(DriveAPI):
             ).execute()
 
             items = results.get('files', [])
-            download_processes = []
             for item in items:
                 itemName = item['name']
                 itemId = item['id']
@@ -50,7 +53,7 @@ class Downloader(DriveAPI):
 
                 if itemType == 'application/vnd.google-apps.folder':
                     print("Stepping into folder: {0}".format(filePath))
-                    all_files.extend(self.getAllFiles(itemId, filePath)) # Recursive call
+                    all_files.extend(self.getAllFiles(itemId, filePath))  # Recursive call
                 else:
                     all_files.append(
                         {"item_id": itemId, "file_path": filePath})
@@ -67,12 +70,12 @@ class Downloader(DriveAPI):
         download_processes = []
         for f in all_files:
             p = Process(target=self.downloadFile,
-                                args=[f['item_id'], f['file_path']])
+                        args=[f['item_id'], f['file_path']])
             p.start()
             download_processes.append(p)
 
         for process in download_processes:
-                process.join()
+            process.join()
 
     def downloadFile(self, fileId, filePath=None):
         # Note: The parent folders in filePath must exist
