@@ -40,7 +40,7 @@ class Downloader(DriveAPI):
             results = self.service.files().list(
                 spaces='drive',
                 pageToken=page_token,
-                q="parents in '{0}'".format(folderId),
+                q="'{0}' in parents".format(folderId),
                 fields="nextPageToken, files(id, name, mimeType)"
             ).execute()
 
